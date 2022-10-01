@@ -334,6 +334,71 @@ img{
 }
 
 
+/* chat page */
+
+.left-panel{
+  width: 25%;
+  height: 70vh;
+  background-color: #D9D9D9;
+  display: flex; 
+  flex-direction: column; 
+  padding: 1rem;
+  border-radius: 10px;
+  overflow-y: scroll;
+  color: black;
+
+}
+
+.user{
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px; 
+  margin: 0.6rem;
+
+}
+
+.user .img{
+  height: 75%;
+  width: 20%; 
+  padding: 0.3rem;
+
+}
+
+
+.message-box{
+  width: 60%;
+  height: 70vh;
+  background-color: #D9D9D9;
+  padding: 1rem 0.3rem;
+  border-radius: 10px;
+  color: black;
+  overflow-y: scroll;
+}
+
+
+.received{
+  text-align: left;
+  background-color: #A9A6A6;
+  width: 20%;
+  margin: 1rem auto 1rem 1rem ;
+  margin: 1rem;
+  padding: 0.3rem;
+  border-radius:5px ;
+}
+
+.send{
+  background-color: #A9A6A6;
+  width: 20%;
+  margin: 1rem 1rem 1rem auto;
+  text-align: right;
+  padding: 0.3rem;
+  border-radius:5px ;
+
+}
+
+
+
 /* Media Query */
 
 @media only screen and (max-width: 800px) {
