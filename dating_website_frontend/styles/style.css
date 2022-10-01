@@ -24,6 +24,13 @@ color: white;
   display: flex;
 }
 
+
+.active{
+  background-color: #ABA5C0;
+  padding: 0.5rem;
+  border-radius:10px ;
+}
+
 img{
   width: 100%;
   height: 100%;
@@ -196,7 +203,71 @@ img{
 .user-img span{
   font-size: 1.2vw;
 }
-
-
  
 /* end signup section  */
+/* end login page */
+
+
+/* start home page */
+/* nav bar */
+.nabar{
+  background-color:#7D1D3F ;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem;
+}
+
+ 
+.nabar .logo{ 
+  width: 10%;
+  height: 100%;
+  padding-top: 0.8rem; 
+}
+
+.nav-content{
+  display: flex;
+  align-items: center; 
+  width: 100%;
+}
+
+.links ul{
+  width: 100%;
+  display: flex; 
+  list-style-type:none; 
+}
+
+
+.links  li{
+   margin-right: 1vw ;
+}
+
+.links ul a{
+  text-decoration: none;
+  color: white;
+  font-size: 2.3vw;
+  font-weight: bolder;
+}
+
+.logout-btn{ 
+  padding: 0.7rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-right: 1.5rem;
+}
+
+
+/* Media Query */
+
+@media only screen and (max-width: 800px) {
+  .logo{
+    display: none;
+  }
+}
