@@ -3,6 +3,7 @@
 
 <head>
   <title>Login</title>
+  <link rel="icon" href="assets/logo-light.svg">
   <link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -25,7 +26,7 @@
           <input type="password" id="login_password" class="input" placeholder="Enter Your Password" required>
         </div>
         <button class="login-btn">Login!</button>
-        <button class="create-new">Create Your Account</button>
+        <button class="create-new" id="new_account">Create Your Account</button>
       </div>
     </div>
 
@@ -34,36 +35,59 @@
   <!-- end Login section  -->
 
   <!-- start signup section  -->
-  <div class="overlay  ">
+  <div id="signup_section" class="overlay  d-none  ">
     <section class="signup-section">
       <div class="box">
-        <div class="close-btn"><b>+</b></div>
-        <div class="group">
-          <div class="form-group">
-            <label for="signup_email">Email</label>
-            <input type="email" id="signup_email" class="input" placeholder="Enter Your Email" required>
-          </div>
-          <div class="form-group">
-            <label for="signup_location">location</label>
-            <input type="text" id="signup_location" class="input" placeholder="Enter Your location" required>
-          </div>
-          <div class="form-group">
-            <label for="signup_password">Password</label>
-            <input type="password" id="signup_password" class="input" placeholder="Enter Your Password" required>
-          </div>
-          <div class="form-group ">
-            <p>Gender :</p>
-            <input type="radio" class="input-radio" name="gender" id="gender-male">
-            <label for="gender-male">Male</label>
-            <input type="radio" class="input-radio" name="gender" id="gender-female">
-            <label for="gender-female">Female</label>
-          </div>
-          <div class="form-group">
-            <p>Interested In :</p>
-            <input type="radio" class="input-radio" name="interested" id="interested-male">
-            <label for="interested-male">Male</label>
-            <input type="radio" class="input-radio" name="interested" id="interested-female">
-            <label for="interested-female">Female</label>
+
+        <div class="close-btn" id="close"><b>+</b></div>
+        <div>
+          <div class="group">
+            <div class="user-img">
+              <label for="picture">
+                <img src="assets/client.png" alt="picture">
+                <span>Click to upload a picture</span>
+              </label>
+              <input type="file" class="d-none" id="picture">
+            </div>
+            <div class="form">
+              <div class="form-group">
+                <label for="signup_email">Email</label>
+                <input type="email" id="signup_email" class="input" placeholder="Enter Your Email" required>
+              </div>
+              <div class="form-group">
+                <label for="signup_age">Age</label>
+                <input type="number" id="signup_age" class="input" placeholder="Enter Your Age" required>
+              </div>
+              <div class="form-group">
+                <label for="signup_password">Password</label>
+                <input type="password" id="signup_password" class="input" placeholder="Enter Your Password" required>
+              </div>
+              <div class="form-group group-data">
+                <div class="form-group">
+                  <label for="signup_location">location</label>
+                  <input type="text" id="signup_location" class="input" placeholder="location" required>
+                </div>
+                <div class="form-group">
+                  <label for="signup_bio">Bio</label>
+                  <input type="number" id="signup_bio" class="input" placeholder="Bio" required>
+                </div>
+              </div>
+              <div class="form-group ">
+                <p>Gender :</p>
+                <input type="radio" class="input-radio" name="gender" id="gender-male">
+                <label for="gender-male">Male</label>
+                <input type="radio" class="input-radio" name="gender" id="gender-female">
+                <label for="gender-female">Female</label>
+              </div>
+              <div class="form-group">
+                <p>Interested In :</p>
+                <input type="radio" class="input-radio" name="interested" id="interested-male">
+                <label for="interested-male">Male</label>
+                <input type="radio" class="input-radio" name="interested" id="interested-female">
+                <label for="interested-female">Female</label>
+              </div>
+
+            </div>
           </div>
           <button class="signup-btn">Signup!</button>
         </div>
@@ -86,7 +110,10 @@
   </div>
 
   <script src="scripts/axios.min.js"></script>
-  <script src="style/index.js"></script>
+  <script src="scripts/index.js"></script>
+  <script src="scripts/login.js"></script>
+
+
 </body>
 
 </html>
