@@ -261,6 +261,76 @@ img{
   border: none;
   outline: none;
   margin-right: 1.5rem;
+  cursor: pointer;
+}
+/* end nav bar */
+
+.main{
+  margin: 10% 0.5rem 6rem 0.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.card{
+  height: auto;
+  width: 10rem;
+  margin: 0.5rem;
+  padding: 1rem;
+  background-color: #3D5467;
+  border-radius: 10px;
+}
+
+.card-header{
+  height: 30%;
+  width: 45%;
+  margin: auto;
+}
+
+.card-body p{
+  margin: 0.5rem;
+  font-size: 1.5vw;
+  padding: 0.2rem;
+}
+
+.card-footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-btn{
+  padding: 0.5rem;
+  background-color: #AB98B0;
+  border: none;
+  outline: none;
+  margin: 0.3rem;
+  border-radius:10px ;
+  width: 30%;
+  height: 100%;
+
+}
+
+.card-footer .like{
+  width: 30%;
+  height: 100%;
+}
+
+/* end main section */
+
+.footer{
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-color:#7D1D3F ;
+  color: white;
+  text-align: center;  
+}
+
+
+.footer p{
+  padding: 0.51rem;
 }
 
 
