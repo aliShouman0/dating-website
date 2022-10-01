@@ -8,6 +8,7 @@
 
 <body>
 
+
   <!-- start Login section  -->
   <section class="login-section">
     <div class="box">
@@ -33,21 +34,56 @@
   <!-- end Login section  -->
 
   <!-- start signup section  -->
-  <section class="Signup-section d-none">
-    <div class="box">
-      <div class="close-btn"><b>+</b></div>
-      <div class="form-group">
-        <label for="signup_email">Email</label>
-        <input type="email" id="signup_email" class="input" placeholder="Enter Your Email" required>
+  <div class="overlay  ">
+    <section class="signup-section">
+      <div class="box">
+        <div class="close-btn"><b>+</b></div>
+        <div class="group">
+          <div class="form-group">
+            <label for="signup_email">Email</label>
+            <input type="email" id="signup_email" class="input" placeholder="Enter Your Email" required>
+          </div>
+          <div class="form-group">
+            <label for="signup_location">location</label>
+            <input type="text" id="signup_location" class="input" placeholder="Enter Your location" required>
+          </div>
+          <div class="form-group">
+            <label for="signup_password">Password</label>
+            <input type="password" id="signup_password" class="input" placeholder="Enter Your Password" required>
+          </div>
+          <div class="form-group ">
+            <p>Gender :</p>
+            <input type="radio" class="input-radio" name="gender" id="gender-male">
+            <label for="gender-male">Male</label>
+            <input type="radio" class="input-radio" name="gender" id="gender-female">
+            <label for="gender-female">Female</label>
+          </div>
+          <div class="form-group">
+            <p>Interested In :</p>
+            <input type="radio" class="input-radio" name="interested" id="interested-male">
+            <label for="interested-male">Male</label>
+            <input type="radio" class="input-radio" name="interested" id="interested-female">
+            <label for="interested-female">Female</label>
+          </div>
+          <button class="signup-btn">Signup!</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="signup_password">Password</label>
-        <input type="password" id="signup_password" class="input" placeholder="Enter Your Password" required>
-      </div>
-      <button class="signup-btn">Signup!</button>
+    </section>
+    <div class="logo">
+      <img src="assets/logo-light.svg" alt="log">
     </div>
-  </section>
+
+  </div>
   <!-- end Signup section  -->
+
+  <div class="flex">
+    <div class="logo">
+      <img src="assets/logo-light.svg" alt="log">
+    </div>
+    <div class="logo">
+      <img src="assets/logo-light.svg" alt="log">
+    </div>
+  </div>
 
   <script src="scripts/axios.min.js"></script>
   <script src="style/index.js"></script>
