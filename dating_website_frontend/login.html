@@ -3,30 +3,37 @@
 
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="style/">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-  
+
   <!-- start Login section  -->
   <section class="login-section">
     <div class="box">
-      <div class="form-group">
-        <label for="login_email">Email</label>
-        <input type="email" id="login_email" class="input" placeholder="Enter Your Email" required>
+      <div class="logo">
+        <img src="assets/logo-light.svg" alt="log">
       </div>
-      <div class="form-group">
-        <label for="login_password">Password</label>
-        <input type="password" id="login_password" class="input" placeholder="Enter Your Password" required>
+      <div class="group">
+        <div class="form-group">
+          <label for="login_email">Email</label>
+          <input type="email" id="login_email" class="input" placeholder="Enter Your Email" required>
+        </div>
+        <div class="form-group">
+          <label for="login_password">Password</label>
+          <input type="password" id="login_password" class="input" placeholder="Enter Your Password" required>
+        </div>
+        <button class="login-btn">Login!</button>
+        <button class="create-new">Create Your Account</button>
       </div>
-      <button class="login-btn">Login!</button>
-      <a href="#">Create Your Account</a>
     </div>
+
   </section>
+
   <!-- end Login section  -->
 
   <!-- start signup section  -->
-  <section class="Signup-section">
+  <section class="Signup-section d-none">
     <div class="box">
       <div class="close-btn"><b>+</b></div>
       <div class="form-group">
@@ -37,7 +44,7 @@
         <label for="signup_password">Password</label>
         <input type="password" id="signup_password" class="input" placeholder="Enter Your Password" required>
       </div>
-      <button class="signup-btn">Signup!</button> 
+      <button class="signup-btn">Signup!</button>
     </div>
   </section>
   <!-- end Signup section  -->

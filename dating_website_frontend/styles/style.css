@@ -1,0 +1,92 @@
+/* css reset */
+*{
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* utilities  */
+
+
+body{
+background-color:#abaecb;
+color: white;
+
+}
+
+.d-none{
+  display: none;
+}
+
+
+
+.box{
+  background-image:linear-gradient(to bottom right, #403052  , #8c3824  ) ;
+  padding: 3rem;
+  width: 50%;
+  height: 35vh;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.input{
+  display: block;
+  border: none;
+  outline: none;
+  padding: 0.6rem;
+  border-radius: 10px;
+  margin: 0.5rem; 
+}
+
+.form-group{
+  margin: 1rem;
+}
+
+.form-group label {
+  font-weight: bolder; 
+  font-size: 1.5vw;
+}
+
+
+/* start Login section */
+.login-section{
+  display: flex; 
+  justify-content: center;
+  height: auto; 
+  margin-top: 2rem;  
+}
+
+.login-btn{ 
+  cursor: pointer;  
+  display: block;
+  padding: 0.5rem;  
+  margin-top: 2rem;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+}
+ 
+.create-new{
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  color: white;  
+  margin-top: 0.7rem;
+}
+
+.logo{
+  width: 20rem;
+  height: 29rem;
+  position: absolute;
+  left:-10%;
+  top: 20%;
+  
+}
+
+
+/* end Login section */
