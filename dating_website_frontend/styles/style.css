@@ -318,22 +318,6 @@ img{
 
 /* end main section */
 
-.footer{
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  background-color:#7D1D3F ;
-  color: white;
-  text-align: center;  
-}
-
-
-.footer p{
-  padding: 0.51rem;
-}
-
-
 /* chat page */
 
 .left-panel{
@@ -446,6 +430,27 @@ img{
  .fav{
   margin-top: 0.5rem;
  }
+
+
+ /* footer */
+
+.footer{ 
+  position: absolute;  
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-color:#7D1D3F ;
+  color: white;
+  text-align: center;  
+
+}
+
+
+.footer p{
+  padding: 0.51rem;
+}
+
 
 
 
