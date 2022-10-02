@@ -53,7 +53,24 @@ class MainController extends Controller
     }
 
 
-   
+    // get all user that intersted in
+    function interested_in($id, $interested_in)
+    {
+
+        $res = User::where("interested_in", $interested_in)
+            ->whereNot("id", $id)->get();
+        if ($res) {
+
+            return response()->json([
+                "status" => "Success",
+                "data" => $res
+            ]);
+        }
+        return response()->json([
+            "status" => "Error",
+            "data" => "Error -Some Thing went wrong "
+        ], 400);
+    }
 
 
     // //       

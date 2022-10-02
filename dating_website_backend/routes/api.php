@@ -21,10 +21,14 @@ Route::group(["prefix" => "v0.1"], function () {
     Route::group(["middleware" => "jwt"], function () {
         Route::post('me', [AuthController::class, 'me']);
         Route::post('logout', [AuthController::class, 'logout']);
+        Route::get("interested_in/{id}/{interested_in}", [MainController::class, "interested_in"])->name("interested-in");
     });
 
-    // add  user
+    // add/signup  user
     Route::post("signup", [MainController::class, "signup"])->name("signup");
+    //login
+    Route::post('login', [AuthController::class, 'login']);
+
 });
 
 
