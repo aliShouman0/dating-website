@@ -67,7 +67,6 @@ class MainController extends Controller
         ], 400);
     }
 
-
     // get all user that intersted in
     function interested_in($id, $interested_in)
     {
@@ -90,7 +89,6 @@ class MainController extends Controller
             "data" => "Error -Some Thing went wrong "
         ], 400);
     }
-
 
     // get all fav user
     function get_favorites($id)
@@ -192,6 +190,31 @@ class MainController extends Controller
             }
         }
 
+        return response()->json([
+            "status" => "Error",
+            "data" => "Error -Some Thing went wrong "
+        ], 400);
+    }
+
+
+    // get all user info who send or receiver message from this user
+    function users_message($id)
+    {
+        $res["senders"] = Chat::select("sender_id")->distinct()->with("User_sender")->where("receiver_id", $id)
+            ->orderBy("date", "DESC")
+            ->get();
+
+        $res["receivers"] = Chat::select("receiver_id")->distinct()->with("User_receiver")->where("sender_id", $id)
+            ->orderBy("date", "DESC")
+            ->get();
+
+        if ($res) {
+
+            return response()->json([
+                "status" => "Success",
+                "data" => $res
+            ]);
+        }
         return response()->json([
             "status" => "Error",
             "data" => "Error -Some Thing went wrong "

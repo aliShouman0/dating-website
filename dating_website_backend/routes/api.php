@@ -33,6 +33,8 @@ Route::group(["prefix" => "v0.1"], function () {
         Route::get("messages/{id}/{sender_id}", [MainController::class, "messages"])->name("get-messages");
         // send message 
         Route::post("message", [MainController::class, "message"])->name("send-messages");
+        //get all user info who send or receiver message from this user      
+        Route::get("users_message/{id}", [MainController::class, "users_message"])->name("users-message");
     });
 
     // add/signup  user
