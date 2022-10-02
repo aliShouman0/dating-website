@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer("age");
             $table->string("location");
             $table->string("bio");
+            $table->string("picture")->nullable();
             $table->string("gender");
             $table->string("interested_in");
             $table->string("invisible");

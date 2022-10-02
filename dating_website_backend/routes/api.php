@@ -22,10 +22,12 @@ Route::group(["prefix" => "v0.1"], function () {
         Route::post('me', [AuthController::class, 'me']);
         Route::post('logout', [AuthController::class, 'logout']);
     });
+
+    // add  user
+    Route::post("signup", [MainController::class, "signup"])->name("signup");
 });
 
 
-// Route::post("/user/{id?}", [MainController::class, "users"])->name("add-user");
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
