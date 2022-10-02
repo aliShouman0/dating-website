@@ -92,7 +92,7 @@ class MainController extends Controller
 
 
     // get all fav user
-    function favorite($id)
+    function get_favorites($id)
     {
         $res = Favorite::where("user_id", $id)->get();
         if ($res) {
@@ -112,14 +112,36 @@ class MainController extends Controller
     function block(Request $request)
     {
         $user = new BlockedUser;
-        if ($request->id && $request->blocked_id) {
-            $user->user_id = $request->id;
-            $user->blocked_user_id = $request->blocked_id;
+        if ($request->user_id && $request->blocked_user_id) {
+            $user->user_id = $request->user_id;
+            $user->blocked_user_id = $request->blocked_user_id;
 
             if ($user->save()) {
                 return response()->json([
                     "status" => "Success",
                     "data" => $user
+                ]);
+            }
+        }
+
+        return response()->json([
+            "status" => "Error",
+            "data" => "Error -Some Thing went wrong "
+        ], 400);
+    }
+
+    // add  user to favorite list
+    function favor(Request $request)
+    {
+        $favor = new Favorite;
+        if ($request->user_id && $request->favorite_id) {
+            $favor->user_id = $request->user_id;
+            $favor->favorite_id = $request->favorite_id;
+
+            if ($favor->save()) {
+                return response()->json([
+                    "status" => "Success",
+                    "data" => $favor
                 ]);
             }
         }
