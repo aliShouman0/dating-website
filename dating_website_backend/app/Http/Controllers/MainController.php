@@ -71,8 +71,12 @@ class MainController extends Controller
     function interested_in($id, $interested_in)
     {
 
-        $res = User::where("interested_in", $interested_in)
-            ->whereNot("id", $id)->get();
+        $res = User::where("gender", $interested_in)
+            ->whereNot("id", $id)
+            ->whereNotIn("id", BlockedUser::select('blocked_user_id')
+                ->where("user_id", $id)
+                ->get())
+            ->get();
         if ($res) {
 
             return response()->json([

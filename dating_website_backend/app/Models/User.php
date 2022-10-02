@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\BlockedUser;
+
 
 class User extends Authenticatable  implements JWTSubject
 {
@@ -33,7 +35,7 @@ class User extends Authenticatable  implements JWTSubject
         'password',
         'remember_token',
     ];
- 
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -43,9 +45,14 @@ class User extends Authenticatable  implements JWTSubject
         return $this->getKey();
     }
 
-    
+
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function Blocked()
+    {
+        return $this->belongsTo(BlockedUser::class, "user_id");
     }
 }
