@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -73,14 +74,20 @@ class MainController extends Controller
     }
 
 
-    // //       
-    // $user->email = $request->email ? $request->email : $user->email;
-    // $user->age = $request->age ? $request->age : $user->age;
-    // $user->location = $request->location ? $request->location : $user->location;
-    // $user->bio = $request->bio ? $request->bio : $user->bio;
-    // $user->gender = $request->gender ? $request->gender : $user->gender;
-    // $user->interstes_in = $request->interstes_in ? $request->interstes_in : $user->interstes_in;
-    // $user->invisible = $request->invisible ? $request->invisible : $user->invisible;        
-    // $user->password = $request->password ? Hash::make($request->password) : $user->password;
+    // get all fav user
+    function favorite($id)
+    {
+        $res = Favorite::where("user_id", $id)->get();
+        if ($res) {
 
+            return response()->json([
+                "status" => "Success",
+                "data" => $res
+            ]);
+        }
+        return response()->json([
+            "status" => "Error",
+            "data" => "Error -Some Thing went wrong "
+        ], 400);
+    }
 }
