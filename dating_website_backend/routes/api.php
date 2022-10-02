@@ -29,6 +29,8 @@ Route::group(["prefix" => "v0.1"], function () {
         Route::post("block", [MainController::class, "block"])->name("block-user");
         // add  user to favorite list
         Route::post("favor", [MainController::class, "favor"])->name("favor-user");
+        // get all message for a user
+        Route::get("messages/{id}", [MainController::class, "messages"])->name("get-messages");
     });
 
     // add/signup  user

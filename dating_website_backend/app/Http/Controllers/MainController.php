@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Favorite;
 use App\Models\BlockedUser;
+use App\Models\Chat;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -146,6 +147,26 @@ class MainController extends Controller
             }
         }
 
+        return response()->json([
+            "status" => "Error",
+            "data" => "Error -Some Thing went wrong "
+        ], 400);
+    }
+
+    // get all message for a user
+    function messages($id)
+    {
+        $res = Chat::where("receiver_id", $id)
+            ->orWhere("sender_id", $id)
+            ->orderBy("date", "ASC")
+            ->get();
+        if ($res) {
+
+            return response()->json([
+                "status" => "Success",
+                "data" => $res
+            ]);
+        }
         return response()->json([
             "status" => "Error",
             "data" => "Error -Some Thing went wrong "
