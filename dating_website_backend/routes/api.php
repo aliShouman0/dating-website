@@ -25,6 +25,8 @@ Route::group(["prefix" => "v0.1"], function () {
         Route::get("interested_in/{id}/{interested_in}", [MainController::class, "interested_in"])->name("interested-in");
         // get all fav user
         Route::get("favorite/{id}", [MainController::class, "favorite"])->name("get-favorite");
+        // block user
+        Route::post("block", [MainController::class, "block"])->name("block-user");
     });
 
     // add/signup  user

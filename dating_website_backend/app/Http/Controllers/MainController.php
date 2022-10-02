@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Favorite;
+use App\Models\BlockedUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,21 +13,6 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
-    // turn base64string to image (.jpeg)
-    function base64_to_jpeg($base64_string, $output_file)
-    {
-        // open the output file for writing
-        $ifp = fopen($output_file, 'wb');
-        // split the string on commas
-        // $data[ 0 ] == "data:image/png;base64"
-        // $data[ 1 ] == <actual base64 string>
-        $data = explode(',', $base64_string);
-        // we could add validation here with ensuring count( $data ) > 1
-        fwrite($ifp, base64_decode($data[0]));
-        // clean up the file resource
-        fclose($ifp);
-        return $output_file;
-    }
 
 
     function signup(Request $request)
@@ -112,6 +98,28 @@ class MainController extends Controller
                 "data" => $res
             ]);
         }
+        return response()->json([
+            "status" => "Error",
+            "data" => "Error -Some Thing went wrong "
+        ], 400);
+    }
+
+    //block user
+    function block(Request $request)
+    {
+        $user = new BlockedUser;
+        if ($request->id && $request->blocked_id) {
+            $user->user_id = $request->id;
+            $user->blocked_user_id = $request->blocked_id;
+
+            if ($user->save()) {
+                return response()->json([
+                    "status" => "Success",
+                    "data" => $user
+                ]);
+            }
+        }
+
         return response()->json([
             "status" => "Error",
             "data" => "Error -Some Thing went wrong "
