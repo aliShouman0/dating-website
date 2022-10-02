@@ -93,7 +93,11 @@ class MainController extends Controller
     // get all fav user
     function get_favorites($id)
     {
-        $res = Favorite::where("user_id", $id)->get();
+        $res = Favorite::where("user_id", $id)
+            ->whereNotIn("favorite_id", BlockedUser::select('blocked_user_id')
+                ->where("user_id", $id)
+                ->get())
+            ->get();
         if ($res) {
 
             return response()->json([
