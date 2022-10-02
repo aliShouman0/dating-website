@@ -154,11 +154,10 @@ class MainController extends Controller
     }
 
     // get all message for a user
-    function messages($id)
+    function messages($id, $sender_id)
     {
-        $res = Chat::where("receiver_id", $id)
-            ->with("User")
-            ->orWhere("sender_id", $id)
+        $res = Chat::where("receiver_id", $id)->where("sender_id", $sender_id)
+            ->orWhere("sender_id", $id)->where("receiver_id", $sender_id)
             ->orderBy("date", "ASC")
             ->get();
         if ($res) {
