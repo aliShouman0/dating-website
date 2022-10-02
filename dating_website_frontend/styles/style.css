@@ -110,7 +110,7 @@ img{
   width: 20rem;
   height: 29rem;
   position: absolute;
-  left:-10%;
+  left:-15%;
   top: 20%;
   margin: 0;
   
@@ -142,9 +142,9 @@ img{
 .signup-section .box{
   margin-top: 10rem;
   height: 70vh;
-  width: 40%;
+  width: 35%;
   transition: all 0.5s ease-in-out; 
-  justify-content: space-around;
+  justify-content: space-between;
 
 }
 
@@ -192,8 +192,8 @@ img{
 }
 
 .user-img{
-  height: 45%;
-  width: 35%;
+  height: 25%;
+  width: 25%;
   margin:  auto;
   text-align: center;
   cursor: pointer;
@@ -430,6 +430,24 @@ img{
   cursor: pointer;
 
 }
+
+/* end chat page */
+
+
+/* start fav page */
+
+
+ .unfav{
+  display: block;
+  margin-top: 10%;
+  margin-left: 2rem;
+ }
+
+ .fav{
+  margin-top: 0.5rem;
+ }
+
+
 
 /* Media Query */
 
