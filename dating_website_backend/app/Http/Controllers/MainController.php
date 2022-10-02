@@ -6,10 +6,28 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class MainController extends Controller
 {
+    // turn base64string to image (.jpeg)
+    function base64_to_jpeg($base64_string, $output_file)
+    {
+        // open the output file for writing
+        $ifp = fopen($output_file, 'wb');
+        // split the string on commas
+        // $data[ 0 ] == "data:image/png;base64"
+        // $data[ 1 ] == <actual base64 string>
+        $data = explode(',', $base64_string);
+        // we could add validation here with ensuring count( $data ) > 1
+        fwrite($ifp, base64_decode($data[0]));
+        // clean up the file resource
+        fclose($ifp);
+        return $output_file;
+    }
+
 
     function signup(Request $request)
     {
@@ -37,7 +55,16 @@ class MainController extends Controller
             $user->invisible =  $request->invisible;
             $user->password =  Hash::make($request->password);
             if ($request->picture) {
-                $user->picture = $request->picture;
+                $image_url_base64 = $request->picture;
+                // split the string on commas
+                // $data[ 0 ] == "data:image/png;base64"
+                // $data[ 1 ] == <actual base64 string>
+                $data = base64_decode(explode(',', $image_url_base64)[1]);
+                $save_name =   'user_images/' . uniqid() . '.png';
+                Storage::disk('local')->put($save_name,  $data);
+                $user->picture =   $save_name;
+            } else {
+                $user->picture = '';
             }
             if ($user->save()) {
                 return response()->json([
