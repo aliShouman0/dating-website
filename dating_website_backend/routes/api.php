@@ -31,6 +31,8 @@ Route::group(["prefix" => "v0.1"], function () {
         Route::post("favor", [MainController::class, "favor"])->name("favor-user");
         // get all message for a user
         Route::get("messages/{id}", [MainController::class, "messages"])->name("get-messages");
+        // send message 
+        Route::post("message", [MainController::class, "message"])->name("send-messages");
     });
 
     // add/signup  user

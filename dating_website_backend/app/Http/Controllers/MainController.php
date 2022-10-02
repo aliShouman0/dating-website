@@ -157,6 +157,7 @@ class MainController extends Controller
     function messages($id)
     {
         $res = Chat::where("receiver_id", $id)
+            ->with("User")
             ->orWhere("sender_id", $id)
             ->orderBy("date", "ASC")
             ->get();
@@ -167,6 +168,31 @@ class MainController extends Controller
                 "data" => $res
             ]);
         }
+        return response()->json([
+            "status" => "Error",
+            "data" => "Error -Some Thing went wrong "
+        ], 400);
+    }
+
+    // send message
+    function message(Request $request)
+    {
+        $message = new Chat;
+        if ($request->sender_id && $request->receiver_id && $request->text) {
+            $message->sender_id = $request->sender_id;
+            $message->receiver_id = $request->receiver_id;
+            $message->text = $request->text;
+            $message->date = time();
+
+
+            if ($message->save()) {
+                return response()->json([
+                    "status" => "Success",
+                    "data" => $message
+                ]);
+            }
+        }
+
         return response()->json([
             "status" => "Error",
             "data" => "Error -Some Thing went wrong "
