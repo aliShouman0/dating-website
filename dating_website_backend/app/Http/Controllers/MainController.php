@@ -9,6 +9,7 @@ use App\Models\BlockedUser;
 use App\Models\Chat;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -70,9 +71,10 @@ class MainController extends Controller
     }
 
     // get all user that intersted in
-    function interested_in($id, $interested_in)
+    function interested_in()
     {
-
+        $id = Auth::id();
+        $interested_in = Auth::user()->interested_in;
         $res = User::where("gender", $interested_in)
             ->where("invisible", "0")
             ->whereNot("id", $id)
@@ -94,8 +96,9 @@ class MainController extends Controller
     }
 
     // get all fav user
-    function get_favorites($id)
+    function get_favorites()
     {
+        $id = Auth::id();
         $res = Favorite::where("user_id", $id)
             ->whereNotIn("favorite_id", BlockedUser::select('blocked_user_id')
                 ->where("user_id", $id)
@@ -117,9 +120,10 @@ class MainController extends Controller
     //block user
     function block(Request $request)
     {
+        $id = Auth::id();
         $user = new BlockedUser;
-        if ($request->user_id && $request->blocked_user_id) {
-            $user->user_id = $request->user_id;
+        if ($request->blocked_user_id) {
+            $user->user_id =  $id;
             $user->blocked_user_id = $request->blocked_user_id;
 
             if ($user->save()) {
@@ -137,8 +141,9 @@ class MainController extends Controller
     }
 
     // check if this user 'favor_id' already in fav  with the login user id
-    public  function checkFav($id, $favor_id)
+    function checkFav($favor_id)
     {
+        $id = Auth::id();
         $favor = Favorite::where("user_id", $id)->where("favorite_id", $favor_id)->get();
         return     isset($favor[0]);
     }
@@ -146,9 +151,10 @@ class MainController extends Controller
     // add  user to favorite list
     function favor(Request $request)
     {
+        $id = Auth::id();
         // check if already in fav favorite_id with  user_id
-        if ($request->user_id && $request->favorite_id) {
-            $status = $this->checkFav($request->user_id, $request->favorite_id);
+        if ($id && $request->favorite_id) {
+            $status = $this->checkFav($request->favorite_id);
             if ($status) {
                 return response()->json([
                     "status" => "exists",
@@ -156,7 +162,7 @@ class MainController extends Controller
                 ]);
             }
             $favor = new Favorite;
-            $favor->user_id = $request->user_id;
+            $favor->user_id = $id;
             $favor->favorite_id = $request->favorite_id;
             if ($favor->save()) {
                 return response()->json([
@@ -173,8 +179,9 @@ class MainController extends Controller
     }
 
     // get all message for a user
-    function messages($id, $sender_id)
+    function messages($sender_id)
     {
+        $id = Auth::id();
         $res = Chat::where("receiver_id", $id)->where("sender_id", $sender_id)
             ->orWhere("sender_id", $id)->where("receiver_id", $sender_id)
             ->orderBy("date", "ASC")
@@ -195,13 +202,13 @@ class MainController extends Controller
     // send message
     function message(Request $request)
     {
+        $id = Auth::id();
         $message = new Chat;
-        if ($request->sender_id && $request->receiver_id && $request->text) {
-            $message->sender_id = $request->sender_id;
+        if ($request->receiver_id && $request->text) {
+            $message->sender_id = $id;
             $message->receiver_id = $request->receiver_id;
             $message->text = $request->text;
             $message->date = time();
-
 
             if ($message->save()) {
                 return response()->json([
@@ -219,8 +226,9 @@ class MainController extends Controller
 
 
     // get all user info who send or receiver message from this user
-    function users_message($id)
+    function users_message()
     {
+        $id = Auth::id();
         $res["senders"] = Chat::select("sender_id")->distinct()->with("User_sender")->where("receiver_id", $id)
             ->orderBy("date", "DESC")
             ->get();

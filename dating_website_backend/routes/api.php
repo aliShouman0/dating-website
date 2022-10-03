@@ -26,28 +26,28 @@ Route::group(["prefix" => "v0.1"], function () {
         // get jwt info
         Route::post('payload', [AuthController::class, 'payload']);
         // get all user that user may be interested_in
-        Route::get("interested_in/{id}/{interested_in}", [MainController::class, "interested_in"])->name("interested-in");
+        Route::get("interested_in", [MainController::class, "interested_in"])->name("interested-in");
         // get all fav user
-        Route::get("favorites/{id}", [MainController::class, "get_favorites"])->name("get-favorites");
+        Route::get("favorites", [MainController::class, "get_favorites"])->name("get-favorites");
         // block user
         Route::post("block", [MainController::class, "block"])->name("block-user");
         // add  user to favorite list
         Route::post("favor", [MainController::class, "favor"])->name("favor-user");
         // get message for a user
-        Route::get("messages/{id}/{sender_id}", [MainController::class, "messages"])->name("get-messages");
+        Route::get("messages/{sender_id}", [MainController::class, "messages"])->name("get-messages");
         // send message 
         Route::post("message", [MainController::class, "message"])->name("send-messages");
         //get all user info who send or receiver message from this user      
-        Route::get("users_message/{id}", [MainController::class, "users_message"])->name("users-message");
+        Route::get("users_message", [MainController::class, "users_message"])->name("users-message");
     });
 
     // add/signup  user
     Route::post("signup", [MainController::class, "signup"])->name("signup");
     //login
-    Route::post('login', [AuthController::class, 'login']);
+    Route::post('login', [AuthController::class, 'login'])->name("login");
 });
- 
+
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
-// });
+// }); 
