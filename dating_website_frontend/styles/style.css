@@ -25,6 +25,7 @@ color: white;
 }
 
 
+
 .active{
   background-color: #ABA5C0;
   padding: 0.5rem;
@@ -75,6 +76,18 @@ img{
   font-size: 1.5vw;
 }
 
+.danger{
+  border: 4px solid #857070;
+  transition: all 0.2s ease-in-out; 
+}
+.error{
+  text-align: center;
+  padding: 0.3rem;
+  border: 3px solid #000000;
+  transition: all 0.8s ease-in-out; 
+  border-radius: 15px; 
+  font-size: 1.5vw;
+}
 
 /* start Login section */
 .login-section{

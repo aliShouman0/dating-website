@@ -1,55 +1,55 @@
-// const workshop_pages = {};
+const dating_website = {};
 
-// workshop_pages.baseUrl = "http://127.0.0.1:8000/api/v0.1"
-
-
-// workshop_pages.Console = (title, values, oneValue = true) => {
-//   console.log('___' + title + '___');
-//   if (oneValue) {
-//     console.log(values);
-//   } else {
-//     for (let i = 0; i < values.length; i++) {
-//       console.log(values[i]);
-//     }
-//   }
-//   console.log('___/' + title + '___');
-
-// }
-
-// workshop_pages.getAPI = async (api_url) => {
-//   try {
-//     return await axios(api_url);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-// workshop_pages.postAPI = async (api_url, api_data, api_token) => {
-//   try {
-//     return await axios.post(api_url, api_data, {
-//       headers: {
-//         "Authorization": "token" + api_token
-//       }
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-// workshop_pages.loadFor = (page) => {
-//   eval("workshop_pages.load_" + page + "();");
-// }
+dating_website.baseUrl = "http://127.0.0.1:8000/api/v0.1"
 
 
-// workshop_pages.load_landing = async () => {
- 
-//   const id = "2";
-//   const products_url = `${workshop_pages.baseUrl}/stores`;
-//   const respose_porduct = await workshop_pages.getAPI(products_url);
-//   workshop_pages.Console("Testing Products API", respose_porduct.data.data);
+dating_website.Console = (title, values, oneValue = true) => {
+  console.log('___' + title + '___');
+  if (oneValue) {
+    console.log(values);
+  } else {
+    for (let i = 0; i < values.length; i++) {
+      console.log(values[i]);
+    }
+  }
+  console.log('___/' + title + '___');
 
-// } 
+}
 
-// workshop_pages.load_sigup = () => {}
+dating_website.getAPI = async (api_url) => {
+  try {
+    return await axios(api_url);
+  } catch (error) {
+    // console.log(error);
+    return error;
+  }
+}
 
- 
+dating_website.postAPI = async (api_url, api_data, api_token = null) => {
+  try {
+    return await axios.post(api_url, api_data, {
+      headers: {
+        "Authorization": "token" + api_token
+      }
+    });
+  } catch (error) {
+    //console.log(error);
+    return error;
+
+  }
+}
+
+dating_website.loadFor = (page) => {
+  eval("dating_website.load_" + page + "();");
+}
+
+
+dating_website.load_landing = async () => {
+
+  // const products_url = `${dating_website.baseUrl}/stores`;
+  // const respose_porduct = await dating_website.getAPI(products_url);
+  // dating_website.Console("Testing Products API", respose_porduct.data.data);
+
+}
+
+dating_website.load_sigup = () => {}
