@@ -6,6 +6,19 @@ const login_btn = document.getElementById("login_btn");
 const login_password = document.getElementById("login_password");
 const login_email = document.getElementById("login_email");
 const error = document.getElementById("error");
+const signup_name = document.getElementById("signup_name");
+const signup_email = document.getElementById("signup_email");
+const signup_age = document.getElementById("signup_age");
+const signup_password = document.getElementById("signup_password");
+const signup_location = document.getElementById("signup_location");
+const signup_bio = document.getElementById("signup_bio");
+const gender = document.getElementById("gender");
+const intersted_in = document.getElementById("intersted_in");
+const signup_btn = document.getElementById("signup_btn");
+
+
+
+
 
 
 
@@ -15,7 +28,11 @@ const error = document.getElementById("error");
 const checkinput = (type) => {
   login_email.classList.remove("danger");
   login_password.classList.remove("danger");
-  error.classList.add("d-none");
+  signup_name.classList.remove("danger");
+  signup_email.classList.remove("danger");
+  signup_age.classList.remove("danger");
+  signup_password.classList.remove("danger");
+  signup_bio.classList.remove("danger");
   if (type == "login") {
     if (login_email.value == "") {
       login_email.classList.add("danger");
@@ -23,6 +40,34 @@ const checkinput = (type) => {
     }
     if (login_password.value == "") {
       login_password.classList.add("danger");
+      return false;
+    }
+
+  } else {
+    if (signup_name.value == "") {
+      signup_name.classList.add("danger");
+      return false;
+    }
+
+    if (signup_email.value == "") {
+      signup_email.classList.add("danger");
+      return false;
+    }
+    if (signup_password.value == "") {
+      signup_password.classList.add("danger");
+      return false;
+    }
+
+    if (signup_password.value == "") {
+      signup_age.classList.add("danger");
+      return false;
+    }
+    if (signup_location.value == "") {
+      signup_password.classList.add("danger");
+      return false;
+    }
+    if (signup_biosignup_btn.value == "") {
+      signup_password.classList.add("danger");
       return false;
     }
 
@@ -93,6 +138,20 @@ const login = async () => {
 // end login method
 
 
+// start creating new account
+const signup = async () => {
+  if (checkinput("signup")) {
+    // start login method
+    let api_data = new FormData();
+    api_data.append("email", login_email.value);
+    api_data.append("password", login_password.value);
+    const login_url = `${dating_website.baseUrl}/login`;
+    const login_info = await dating_website.postAPI(login_url, api_data);
+
+    if (login_info.status && login_info.status == 200) {}
+  }
+
+}
 
 
 // popup for new account
@@ -105,6 +164,9 @@ close.addEventListener("click", () => {
 })
 //
 login_btn.addEventListener("click", login);
+//
+signup_btn.addEventListener("click", signup)
+
 
 //check if user already logged in
 checkLogin();

@@ -53,6 +53,10 @@
             </div>
             <div class="form">
               <div class="form-group">
+                <label for="signup_name">Name</label>
+                <input type="text" id="signup_name" class="input" placeholder="Enter Your Email" required>
+              </div>
+              <div class="form-group">
                 <label for="signup_email">Email</label>
                 <input type="email" id="signup_email" class="input" placeholder="Enter Your Email" required>
               </div>
@@ -76,22 +80,23 @@
               </div>
               <div class="form-group ">
                 <p>Gender :</p>
-                <input type="radio" class="input-radio" name="gender" id="gender-male">
+                <input type="radio" checked="checked" class="input-radio" name="gender" id="gender-male" value="male">
                 <label for="gender-male">Male</label>
-                <input type="radio" class="input-radio" name="gender" id="gender-female">
+                <input type="radio" class="input-radio" name="gender" id="gender-female" value="female">
                 <label for="gender-female">Female</label>
               </div>
               <div class="form-group">
                 <p>Interested In :</p>
-                <input type="radio" class="input-radio" name="interested" id="interested-male">
+                <input type="radio" class="input-radio" name="interested" id="interested-male" value="male">
                 <label for="interested-male">Male</label>
-                <input type="radio" class="input-radio" name="interested" id="interested-female">
+                <input type="radio" class="input-radio" name="interested" id="interested-female" value="female"
+                  checked="checked">
                 <label for="interested-female">Female</label>
               </div>
 
             </div>
           </div>
-          <button class="signup-btn">Signup!</button>
+          <button class="signup-btn" id="signup_btn">Signup!</button>
         </div>
       </div>
     </section>

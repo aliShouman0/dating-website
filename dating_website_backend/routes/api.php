@@ -19,8 +19,12 @@ Route::group([
 
 Route::group(["prefix" => "v0.1"], function () {
     Route::group(["middleware" => "jwt"], function () {
+        // get my data
         Route::post('me', [AuthController::class, 'me']);
+        // logout
         Route::post('logout', [AuthController::class, 'logout']);
+        // get jwt info
+        Route::post('payload', [AuthController::class, 'payload']);
         // get all user that user may be interested_in
         Route::get("interested_in/{id}/{interested_in}", [MainController::class, "interested_in"])->name("interested-in");
         // get all fav user
