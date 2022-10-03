@@ -77,28 +77,6 @@ const checkinput = (type) => {
 
 }
 
-// check if login by test data in  localStorage
-const checkLogin = async () => {
-  if (!localStorage.getItem("access_token")) {
-    localStorage.removeItem("user_info");
-    return;
-  }
-  const access_token = localStorage.getItem("access_token");
-  // get user info
-  const user_info_url = `${dating_website.baseUrl}/me`;
-  let api_userInfo = new FormData();
-  api_userInfo.append("token", access_token);
-  const user_info = await dating_website.postAPI(user_info_url, api_userInfo);
-  if (user_info.status && user_info.status == 200) {
-    localStorage.setItem("user_info", JSON.stringify(user_info.data));
-    window.location = "home.html"
-
-  } else {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("user_info");
-
-  }
-}
 
 
 // start login method
@@ -214,6 +192,24 @@ signup_btn.addEventListener("click", loadData)
 //if img uploaded convert img to base64 and save it in api_signup_data
 picture.addEventListener("change", loadImg)
 
+// check if login by checking data in  localStorage
+checkLogin = async () => {
+  if (!localStorage.getItem("access_token")) {
+    localStorage.removeItem("user_info");
+  }
+  const access_token = localStorage.getItem("access_token");
+  // get user info
+  const user_info_url = `${dating_website.baseUrl}/me`;
+  let api_userInfo = new FormData();
+  api_userInfo.append("token", access_token);
+  const user_info = await dating_website.postAPI(user_info_url, api_userInfo);
+  if (user_info.status && user_info.status == 200) {
+    localStorage.setItem("user_info", JSON.stringify(user_info.data));
+    window.location = "home.html";
+  } else {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user_info");
 
-//check if user already logged in
+  }
+}
 checkLogin();

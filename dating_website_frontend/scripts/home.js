@@ -4,6 +4,9 @@ const userInfo = JSON.parse(localStorage.getItem("user_info"));
 const token = localStorage.getItem("access_token");
 
 
+// check if user are login
+
+
 // load interested user on screen as card
 const loadUser = (data) => {
   dating_website.Console("s", data)
@@ -35,9 +38,35 @@ const get_user = async () => {
   const intersted_user = await dating_website.getAPI(url);
   if (intersted_user.status && intersted_user.status == 200 && intersted_user.data.status == "Success") {
     loadUser(intersted_user.data.data);
-  }else{
+  } else {
     main.innerHTML += ` Some Thing is Wrong 😒😢🥲🤨😥`;
   }
 }
 
+// check if login by checking data in  localStorage
+checkLogin = async () => {
+  if (!localStorage.getItem("access_token")) {
+    localStorage.removeItem("user_info");
+  }
+  const access_token = localStorage.getItem("access_token");
+  // get user info
+  const user_info_url = `${dating_website.baseUrl}/me`;
+  let api_userInfo = new FormData();
+  api_userInfo.append("token", access_token);
+  const user_info = await dating_website.postAPI(user_info_url, api_userInfo);
+  if (user_info.status && user_info.status == 200) {
+    localStorage.setItem("user_info", JSON.stringify(user_info.data));
+    return true;
+  } else {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user_info");
+    window.location = "login.html";
+  }
+}
+
+
+checkLogin();
+
+
+dating_website.logout();
 get_user();

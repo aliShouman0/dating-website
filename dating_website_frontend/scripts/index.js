@@ -44,12 +44,21 @@ dating_website.loadFor = (page) => {
 }
 
 
-dating_website.load_landing = async () => {
 
-  // const products_url = `${dating_website.baseUrl}/stores`;
-  // const respose_porduct = await dating_website.getAPI(products_url);
-  // dating_website.Console("Testing Products API", respose_porduct.data.data);
 
+
+dating_website.logout = () => {
+  const logout_btn = document.getElementById("logout");
+  const api_logout = `${dating_website.baseUrl}/logout`
+  const token = localStorage.getItem("access_token");
+  const data = new FormData();
+  data.append("token", token)
+
+  logout_btn.addEventListener("click", async () => {
+    await dating_website.postAPI(api_logout, data);
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user_info");
+    location.reload();
+
+  })
 }
-
-dating_website.load_sigup = () => {}
