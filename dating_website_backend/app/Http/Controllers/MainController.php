@@ -74,6 +74,7 @@ class MainController extends Controller
     {
 
         $res = User::where("gender", $interested_in)
+            ->where("invisible", "0")
             ->whereNot("id", $id)
             ->whereNotIn("id", BlockedUser::select('blocked_user_id')
                 ->where("user_id", $id)
@@ -135,14 +136,28 @@ class MainController extends Controller
         ], 400);
     }
 
+    // check if this user 'favor_id' already in fav  with the login user id
+    public  function checkFav($id, $favor_id)
+    {
+        $favor = Favorite::where("user_id", $id)->where("favorite_id", $favor_id)->get();
+        return     isset($favor[0]);
+    }
+
     // add  user to favorite list
     function favor(Request $request)
     {
-        $favor = new Favorite;
+        // check if already in fav favorite_id with  user_id
         if ($request->user_id && $request->favorite_id) {
+            $status = $this->checkFav($request->user_id, $request->favorite_id);
+            if ($status) {
+                return response()->json([
+                    "status" => "exists",
+                    "data" => $status
+                ]);
+            }
+            $favor = new Favorite;
             $favor->user_id = $request->user_id;
             $favor->favorite_id = $request->favorite_id;
-
             if ($favor->save()) {
                 return response()->json([
                     "status" => "Success",
