@@ -6,20 +6,18 @@ const login_btn = document.getElementById("login_btn");
 const login_password = document.getElementById("login_password");
 const login_email = document.getElementById("login_email");
 const error = document.getElementById("error");
+const error2 = document.getElementById("error2");
 const signup_name = document.getElementById("signup_name");
 const signup_email = document.getElementById("signup_email");
 const signup_age = document.getElementById("signup_age");
 const signup_password = document.getElementById("signup_password");
 const signup_location = document.getElementById("signup_location");
 const signup_bio = document.getElementById("signup_bio");
-const gender = document.getElementById("gender");
-const intersted_in = document.getElementById("intersted_in");
+const gender_male = document.getElementById("gender_male");
+const interested_male = document.getElementById("interested_male");
+const picture = document.getElementById("picture");
 const signup_btn = document.getElementById("signup_btn");
-
-
-
-
-
+const profile_pic = document.getElementById("profile_pic");
 
 
 
@@ -33,6 +31,8 @@ const checkinput = (type) => {
   signup_age.classList.remove("danger");
   signup_password.classList.remove("danger");
   signup_bio.classList.remove("danger");
+  signup_location.classList.remove("danger");
+
   if (type == "login") {
     if (login_email.value == "") {
       login_email.classList.add("danger");
@@ -48,26 +48,27 @@ const checkinput = (type) => {
       signup_name.classList.add("danger");
       return false;
     }
+    const regEx = /[a-z0-9_\.-]{1,}@[a-z0-9_\.-]{1,}.com/;
 
-    if (signup_email.value == "") {
+    if (signup_email.value == "" || !regEx.test(signup_email.value)) {
       signup_email.classList.add("danger");
       return false;
     }
-    if (signup_password.value == "") {
-      signup_password.classList.add("danger");
+    if (signup_age.value == "") {
+      signup_age.classList.add("danger");
       return false;
     }
 
     if (signup_password.value == "") {
-      signup_age.classList.add("danger");
+      signup_password.classList.add("danger");
       return false;
     }
     if (signup_location.value == "") {
-      signup_password.classList.add("danger");
+      signup_location.classList.add("danger");
       return false;
     }
-    if (signup_biosignup_btn.value == "") {
-      signup_password.classList.add("danger");
+    if (signup_bio.value == "") {
+      signup_bio.classList.add("danger");
       return false;
     }
 
@@ -78,6 +79,10 @@ const checkinput = (type) => {
 
 // check if login by test data in  localStorage
 const checkLogin = async () => {
+  if (!localStorage.getItem("access_token")) {
+    localStorage.removeItem("user_info");
+    return;
+  }
   const access_token = localStorage.getItem("access_token");
   // get user info
   const user_info_url = `${dating_website.baseUrl}/me`;
@@ -98,6 +103,8 @@ const checkLogin = async () => {
 
 // start login method
 const login = async () => {
+  login.disabled = true;
+  error.classList.add("d-none");
   // check  input 
   if (checkinput("login")) {
     // start login method
@@ -125,33 +132,71 @@ const login = async () => {
       } else {
         localStorage.removeItem("access_token");
         localStorage.removeItem("user_info");
+        login.disabled = false;
+
       }
 
     } else {
       error.classList.remove("d-none");
+      login.disabled = false;
 
     }
+  } else {
+    login.disabled = false;
   }
 
 }
 
 // end login method
 
-
+/* signup_data */
 // start creating new account
-const signup = async () => {
+const api_signup_data = new FormData();
+//send data after load from user
+const sendData = async () => {
+  const signup_url = `${dating_website.baseUrl}/signup`;
+  const signup_info = await dating_website.postAPI(signup_url, api_signup_data);
+  if (signup_info.status && signup_info.status == 200) {
+    location.reload();
+  } else {
+    error2.classList.remove("d-none");
+  }
+  dating_website.Console("post", signup_info);
+}
+
+// load and check if data is valid
+const loadData = () => {
+  error2.classList.add("d-none");
   if (checkinput("signup")) {
     // start login method
-    let api_data = new FormData();
-    api_data.append("email", login_email.value);
-    api_data.append("password", login_password.value);
-    const login_url = `${dating_website.baseUrl}/login`;
-    const login_info = await dating_website.postAPI(login_url, api_data);
+    api_signup_data.append("name", signup_name.value);
+    api_signup_data.append("email", signup_email.value);
+    api_signup_data.append("age", signup_age.value);
+    api_signup_data.append("password", signup_password.value);
+    api_signup_data.append("location", signup_location.value);
+    api_signup_data.append("bio", signup_bio.value);
+    api_signup_data.append("invisible", "0");
+    api_signup_data.append("interested_in", interested_male.checked ? interested_male.value : "female");
+    api_signup_data.append("gender", gender_male.checked ? gender_male.value : "female");
+    sendData();
 
-    if (login_info.status && login_info.status == 200) {}
   }
 
 }
+
+// load img when upload
+const loadImg = (e) => {
+  const reader = new FileReader();
+  if (picture.files.length != 0) {
+    reader.addEventListener("load", () => {
+      api_signup_data.append("picture", reader.result);
+      profile_pic.src = reader.result
+
+    });
+    reader.readAsDataURL(picture.files[0]);
+  }
+}
+
 
 
 // popup for new account
@@ -165,7 +210,9 @@ close.addEventListener("click", () => {
 //
 login_btn.addEventListener("click", login);
 //
-signup_btn.addEventListener("click", signup)
+signup_btn.addEventListener("click", loadData)
+//if img uploaded convert img to base64 and save it in api_signup_data
+picture.addEventListener("change", loadImg)
 
 
 //check if user already logged in

@@ -38,8 +38,8 @@ img{
 }
 
 .logo{
-  width: 10rem;
-  height: 10rem;
+  width: 8rem;
+  height: 8rem;
   margin: 1rem;  
   transition: all 0.5s ease-in-out;
  
@@ -48,9 +48,9 @@ img{
 
 .box{
   background-image:linear-gradient(to bottom right, #403052  , #8c3824  ) ;
-  padding: 3rem;
+  padding: 2rem;
   width: 50%;
-  height: 35vh;
+  height: 45vh;
   border-radius: 50px;
   display: flex;
   align-items: center;
@@ -62,9 +62,10 @@ img{
   display: block;
   border: none;
   outline: none;
-  padding: 0.6rem;
+  padding: 0.5rem;
   border-radius: 10px;
-  margin: 0.5rem; 
+  margin: 0.3rem; 
+  
 }
 
 .form-group{
@@ -73,11 +74,11 @@ img{
 
 .form-group label {
   font-weight: bolder; 
-  font-size: 1.5vw;
+  font-size: 1.4vw;
 }
 
 .danger{
-  border: 4px solid #857070;
+  border: 4px solid #0055b6;
   transition: all 0.2s ease-in-out; 
 }
 .error{
@@ -87,7 +88,23 @@ img{
   transition: all 0.8s ease-in-out; 
   border-radius: 15px; 
   font-size: 1.5vw;
+  font-weight: lighter; 
+  margin: 0.6rem;
+
 }
+
+.error1{
+  width: 40%;
+  margin: 0.5rem auto;
+}
+
+button:hover{
+  background-color: rgba(62, 43, 83,0.7);
+  transition: all 0.5s ease-in-out;
+  color: white;
+}
+ 
+ 
 
 /* start Login section */
 .login-section{
@@ -105,10 +122,12 @@ img{
   border: none;
   border-radius: 10px;
   width: 100%;
+  transition: all 0.5s ease-in-out;
+
 }
  
 .create-new{
-   background-color: transparent; 
+  background-color: transparent; 
   border: 0;
   outline: none;
   cursor: pointer;
@@ -117,11 +136,12 @@ img{
   padding: 0.5rem;
   width: 100%;
   height: 15%;
+  border-radius: 15px;
 }
 
 .login-section .logo{
-  width: 20rem;
-  height: 29rem;
+  width: 15rem;
+  height: 15rem;
   position: absolute;
   left:-15%;
   top: 20%;
@@ -153,7 +173,7 @@ img{
 }
 
 .signup-section .box{
-  margin-top: 10rem;
+  margin-top: 11rem;
   height: 85vh;
   width: 35%;
   transition: all 0.5s ease-in-out; 
@@ -211,11 +231,22 @@ img{
   text-align: center;
   cursor: pointer;
   margin-right: 1.9rem;
-}
+  transition: all 0.5s ease-in-out;
+ }
 
+.user-img:hover{
+  opacity: 0.6;
+ 
+}
 
 .user-img span{
   font-size: 1.2vw;
+  cursor: pointer;
+
+}
+
+.user-img label{
+  cursor: pointer;
 }
  
 /* end signup section  */

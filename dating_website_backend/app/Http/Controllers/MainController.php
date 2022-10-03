@@ -21,6 +21,7 @@ class MainController extends Controller
         // create new user
         $user = new User;
         if (
+            $request->name &&
             $request->email &&
             $request->age &&
             $request->location &&
@@ -33,6 +34,7 @@ class MainController extends Controller
         ) {
 
             //check if  all needed data are sended and save user
+            $user->name =  $request->name;
             $user->email =  $request->email;
             $user->age =  $request->age;
             $user->location =  $request->location;

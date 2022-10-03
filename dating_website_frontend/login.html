@@ -27,12 +27,12 @@
         </div>
         <button class="login-btn" id="login_btn">Login!</button>
         <button class="create-new" id="new_account">Create Your Account</button>
-        <p class="d-none error" id="error">Some Thing Is Wrong</p>
       </div>
     </div>
 
 
   </section>
+  <p class="d-none error error1" id="error">Some Thing Is Wrong :(😒</p>
 
   <!-- end Login section  -->
 
@@ -46,7 +46,7 @@
           <div class="group">
             <div class="user-img">
               <label for="picture">
-                <img src="assets/client.png" alt="picture">
+                <img src="assets/client.png" alt="picture" id="profile_pic">
                 <span>Click to upload a picture</span>
               </label>
               <input type="file" class="d-none" id="picture">
@@ -58,7 +58,7 @@
               </div>
               <div class="form-group">
                 <label for="signup_email">Email</label>
-                <input type="email" id="signup_email" class="input" placeholder="Enter Your Email" required>
+                <input type="email" id="signup_email" class="input" placeholder="ex@ex.com" required>
               </div>
               <div class="form-group">
                 <label for="signup_age">Age</label>
@@ -75,28 +75,31 @@
                 </div>
                 <div class="form-group">
                   <label for="signup_bio">Bio</label>
-                  <input type="number" id="signup_bio" class="input" placeholder="Bio" required>
+                  <input type="text" id="signup_bio" class="input" placeholder="Bio" required>
                 </div>
               </div>
               <div class="form-group ">
                 <p>Gender :</p>
-                <input type="radio" checked="checked" class="input-radio" name="gender" id="gender-male" value="male">
+                <input type="radio" checked="checked" class="input-radio" name="gender" id="gender_male" value="male">
                 <label for="gender-male">Male</label>
-                <input type="radio" class="input-radio" name="gender" id="gender-female" value="female">
+                <input type="radio" class="input-radio" name="gender" id="gender_female" value="female">
                 <label for="gender-female">Female</label>
               </div>
               <div class="form-group">
                 <p>Interested In :</p>
-                <input type="radio" class="input-radio" name="interested" id="interested-male" value="male">
+                <input type="radio" class="input-radio" name="interested" id="interested_male" value="male">
                 <label for="interested-male">Male</label>
-                <input type="radio" class="input-radio" name="interested" id="interested-female" value="female"
+                <input type="radio" class="input-radio" name="interested" id="interested_female" value="female"
                   checked="checked">
                 <label for="interested-female">Female</label>
               </div>
 
             </div>
           </div>
+          
           <button class="signup-btn" id="signup_btn">Signup!</button>
+          <p class="d-none  error   " id="error2">Some Thing Is Wrong :(😒</p>
+
         </div>
       </div>
     </section>
