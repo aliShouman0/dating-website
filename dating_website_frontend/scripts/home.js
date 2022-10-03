@@ -4,27 +4,55 @@ const userInfo = JSON.parse(localStorage.getItem("user_info"));
 const token = localStorage.getItem("access_token");
 
 
-
-
-
+// block user
 const blockUser = async (btn) => {
   const url = dating_website.baseUrl + "/block"
   const data = new FormData();
   data.append("token", token);
-  data.append("user_id", userInfo["id"]);
   data.append("blocked_user_id", btn.getAttribute("value"));
   const res = await dating_website.postAPI(url, data);
   location.reload();
 
 }
 
+// like user
+const likeUser = async (btn) => {
+  const url = dating_website.baseUrl + "/favor"
+  const data = new FormData();
+  data.append("token", token);
+  data.append("favorite_id", btn.getAttribute("data-value"));
+  const res = await dating_website.postAPI(url, data);
+  const p = document.createElement("span");
+  if (res.data.status == "exists") {
+    p.innerText = "Already in Fav"
 
+  }
+  if (res.data.status == "Success") {
+    p.innerText = "Added Done"
+
+  }
+  btn.parentElement.appendChild(p);
+  setTimeout(() => {
+    btn.parentElement.removeChild(btn.parentElement.lastChild)
+  }, 3000)
+
+}
+
+// add Event Listener when all user are prente don screen
 const loadEvents = () => {
-  // get all btn and add addEventListener 
+  // get block all btn and add addEventListener 
   const block = document.querySelectorAll(".block");
   block.forEach(element => {
     element.addEventListener("click", () => {
       blockUser(element);
+    })
+  });
+
+  // get like all btn and add addEventListener 
+  const like = document.querySelectorAll(".like");
+  like.forEach(element => {
+    element.addEventListener("click", () => {
+      likeUser(element);
     })
   });
 }
@@ -46,8 +74,8 @@ const loadUser = (data) => {
     <div class="card-footer">
       <button class="card-btn chat "   value="${element.id}">Chat</button>
       <button class="card-btn block"   value="${element.id}">Block</button>
-      <div class="like" id="like_btn"><img src="assets/heart.png" alt="like" value="${element.id}"></div>
-    </div>
+      <div class="like"  data-value="${element.id}" ><img src="assets/heart.png" alt="like"></div>
+     </div>
   </div> `;
 
   });
@@ -57,7 +85,7 @@ const loadUser = (data) => {
 
 // get interested user
 const get_user = async () => {
-  const url = `${dating_website.baseUrl}/interested_in/${userInfo["id"]}/${userInfo["interested_in"]}?token=${token}`;
+  const url = `${dating_website.baseUrl}/interested_in?token=${token}`;
   const intersted_user = await dating_website.getAPI(url);
   if (intersted_user.status && intersted_user.status == 200 && intersted_user.data.status == "Success") {
     loadUser(intersted_user.data.data);
@@ -88,8 +116,10 @@ checkLogin = async () => {
 }
 
 
+// check if user are login in and chck if token are valid
 checkLogin();
 
 
 dating_website.logout();
+// get interested user
 get_user();
