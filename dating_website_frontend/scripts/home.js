@@ -4,12 +4,33 @@ const userInfo = JSON.parse(localStorage.getItem("user_info"));
 const token = localStorage.getItem("access_token");
 
 
-// check if user are login
 
+
+
+const blockUser = async (btn) => {
+  const url = dating_website.baseUrl + "/block"
+  const data = new FormData();
+  data.append("token", token);
+  data.append("user_id", userInfo["id"]);
+  data.append("blocked_user_id", btn.getAttribute("value"));
+  const res = await dating_website.postAPI(url, data);
+  location.reload();
+
+}
+
+
+const loadEvents = () => {
+  // get all btn and add addEventListener 
+  const block = document.querySelectorAll(".block");
+  block.forEach(element => {
+    element.addEventListener("click", () => {
+      blockUser(element);
+    })
+  });
+}
 
 // load interested user on screen as card
 const loadUser = (data) => {
-  dating_website.Console("s", data)
   data.forEach(element => {
     main.innerHTML += ` 
     <div class="card">
@@ -23,13 +44,15 @@ const loadUser = (data) => {
       <p>Locaton:<span>${element.location}</span></p>
     </div>
     <div class="card-footer">
-      <button class="card-btn" id="chat_btn" value="${element.id}">Chat</button>
-      <button class="card-btn" id="bock_btn" value="${element.id}">Block</button>
+      <button class="card-btn chat "   value="${element.id}">Chat</button>
+      <button class="card-btn block"   value="${element.id}">Block</button>
       <div class="like" id="like_btn"><img src="assets/heart.png" alt="like" value="${element.id}"></div>
     </div>
   </div> `;
 
   });
+  // load events for like block and chat
+  loadEvents();
 }
 
 // get interested user

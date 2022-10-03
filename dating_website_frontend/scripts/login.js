@@ -20,8 +20,6 @@ const signup_btn = document.getElementById("signup_btn");
 const profile_pic = document.getElementById("profile_pic");
 
 
-
-
 // check if all input are filled
 const checkinput = (type) => {
   login_email.classList.remove("danger");
@@ -76,8 +74,6 @@ const checkinput = (type) => {
   return true;
 
 }
-
-
 
 // start login method
 const login = async () => {
