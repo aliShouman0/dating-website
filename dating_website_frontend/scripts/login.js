@@ -82,7 +82,7 @@ const login = async () => {
   // check  input 
   if (checkinput("login")) {
     // start login method
-    let api_data = new FormData();
+    const api_data = new FormData();
     api_data.append("email", login_email.value);
     api_data.append("password", login_password.value);
     const login_url = `${dating_website.baseUrl}/login`;
@@ -95,7 +95,7 @@ const login = async () => {
       // get user info
       const user_info_url = `${dating_website.baseUrl}/me`;
       // this api need token
-      let api_userInfo = new FormData();
+      const api_userInfo = new FormData();
       api_userInfo.append("token", access_token);
       const user_info = await dating_website.postAPI(user_info_url, api_userInfo);
       //  if token valid will get user info and save in local storage then redirect to home page   
@@ -195,7 +195,7 @@ checkLogin = async () => {
     const access_token = localStorage.getItem("access_token");
     // get user info
     const user_info_url = `${dating_website.baseUrl}/me`;
-    let api_userInfo = new FormData();
+    const api_userInfo = new FormData();
     api_userInfo.append("token", access_token);
     const user_info = await dating_website.postAPI(user_info_url, api_userInfo);
     if (user_info.status && user_info.status == 200) {

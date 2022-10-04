@@ -71,7 +71,7 @@ dating_website.checkLogin = async () => {
   }
   // get user info
   const user_info_url = `${dating_website.baseUrl}/me`;
-  let api_userInfo = new FormData();
+  const api_userInfo = new FormData();
   api_userInfo.append("token", dating_website.token);
   const user_info = await dating_website.postAPI(user_info_url, api_userInfo);
   if (user_info.status && user_info.status == 200) {
