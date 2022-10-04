@@ -420,6 +420,7 @@ button:hover{
   border-radius: 10px;
   color: black;
   overflow-y: scroll;
+  position: relative;
 }
 
 
@@ -454,7 +455,10 @@ button:hover{
 .new-message{
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 100%;  
+  position: absolute;
+  bottom: 0;
+  left: 0; 
 }
 
 .new-message .input{
