@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home</title>
+  <link rel="icon" href="assets/logo-light.svg">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+  <!-- nav bar -->
+  <nav class="nabar">
+    <div class="nav-content">
+      <div class="logo">
+        <img src="assets/logo-light.svg" alt="logo">
+      </div>
+      <div class="links">
+        <ul>
+          <li><a href="home.html" >Home</a></li>
+          <li><a href="favorite.html">Favorite</a></li>
+          <li><a href="chat.html" class="active">Chat</a></li>
+        </ul>
+      </div>
+    </div>
+    <button class="nav-btn" id="edit">Edit Profile</button>
+    <button class="nav-btn" id="logout">Logout</button>
+
+  </nav>
+
+
+  <!-- main section chating -->
+  <section class="chat">
+    <div class="main">
+      <div class="left-panel" id="left_panel">
+        <div class="no_message sm">
+          <p>No Message Yet</p>
+          <img src="assets/no.png">
+        </div>
+      </div>
+
+      <div class="message-box" id="message_box">
+        <div class="no_message">
+          <p>No Message Yet</p>
+          <img src="assets/no.png">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- end nav bar  -->
+
+  <!-- footer -->
+  <footer class="footer">
+    <p>Copyright © 2022 FSW Cycle#21</p>
+  </footer>
+
+  <script src="scripts/axios.min.js"></script>
+  <script src="scripts/index.js"></script>
+  <script src="scripts/chat.js"></script>
+
+
+</body>
+
+</html>

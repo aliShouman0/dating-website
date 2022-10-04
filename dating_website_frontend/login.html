@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login</title>
+  <link rel="icon" href="assets/logo-light.svg">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+
+
+  <!-- start Login section  -->
+  <section class="login-section">
+    <div class="box">
+      <div class="logo">
+        <img src="assets/logo-light.svg" alt="log">
+      </div>
+      <div class="group">
+        <div class="form-group">
+          <label for="login_email">Email</label>
+          <input type="email" id="login_email" class="input " placeholder="Enter Your Email" required>
+        </div>
+        <div class="form-group">
+          <label for="login_password">Password</label>
+          <input type="password" id="login_password" class="input" placeholder="Enter Your Password" required>
+        </div>
+        <button class="login-btn" id="login_btn">Login!</button>
+        <button class="create-new" id="new_account">Create Your Account</button>
+      </div>
+    </div>
+
+
+  </section>
+  <p class="d-none error error1" id="error">Some Thing Is Wrong :(😒</p>
+
+  <!-- end Login section  -->
+
+  <!-- start signup section  -->
+  <div id="signup_section" class="overlay  d-none  ">
+    <section class="signup-section">
+      <div class="box">
+
+        <div class="close-btn" id="close"><b>+</b></div>
+        <div>
+          <div class="group">
+            <div class="user-img">
+              <label for="picture">
+                <img src="assets/client.png" alt="picture" id="profile_pic">
+                <span>Click to upload a picture</span>
+              </label>
+              <input type="file" class="d-none" id="picture">
+            </div>
+            <div class="form">
+              <div class="form-group">
+                <label for="signup_name">Name</label>
+                <input type="text" id="signup_name" class="input" placeholder="Enter Your Email" required>
+              </div>
+              <div class="form-group">
+                <label for="signup_email">Email</label>
+                <input type="email" id="signup_email" class="input" placeholder="ex@ex.com" required>
+              </div>
+              <div class="form-group">
+                <label for="signup_age">Age</label>
+                <input type="number" id="signup_age" class="input" placeholder="Enter Your Age" required>
+              </div>
+              <div class="form-group">
+                <label for="signup_password">Password</label>
+                <input type="password" id="signup_password" class="input" placeholder="Enter Your Password" required>
+              </div>
+              <div class="form-group group-data">
+                <div class="form-group">
+                  <label for="signup_location">location</label>
+                  <input type="text" id="signup_location" class="input" placeholder="location" required>
+                </div>
+                <div class="form-group">
+                  <label for="signup_bio">Bio</label>
+                  <input type="text" id="signup_bio" class="input" placeholder="Bio" required>
+                </div>
+              </div>
+              <div class="form-group ">
+                <p>Gender :</p>
+                <input type="radio" checked="checked" class="input-radio" name="gender" id="gender_male" value="male">
+                <label for="gender-male">Male</label>
+                <input type="radio" class="input-radio" name="gender" id="gender_female" value="female">
+                <label for="gender-female">Female</label>
+              </div>
+              <div class="form-group">
+                <p>Interested In :</p>
+                <input type="radio" class="input-radio" name="interested" id="interested_male" value="male">
+                <label for="interested-male">Male</label>
+                <input type="radio" class="input-radio" name="interested" id="interested_female" value="female"
+                  checked="checked">
+                <label for="interested-female">Female</label>
+              </div>
+
+            </div>
+          </div>
+          
+          <button class="signup-btn" id="signup_btn">Signup!</button>
+          <p class="d-none  error   " id="error2">Some Thing Is Wrong :(😒</p>
+
+        </div>
+      </div>
+    </section>
+    <div class="logo">
+      <img src="assets/logo-light.svg" alt="log">
+    </div>
+
+  </div>
+  <!-- end Signup section  -->
+
+  <div class="flex">
+    <div class="logo">
+      <img src="assets/logo-light.svg" alt="log">
+    </div>
+    <div class="logo">
+      <img src="assets/logo-light.svg" alt="log">
+    </div>
+  </div>
+
+  <script src="scripts/axios.min.js"></script>
+  <script src="scripts/index.js"></script>
+  <script src="scripts/login.js"></script>
+
+
+</body>
+
+</html>

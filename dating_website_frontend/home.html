@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home</title>
+  <link rel="icon" href="assets/logo-light.svg">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+  <!-- nav bar -->
+  <nav class="nabar">
+    <div class="nav-content">
+      <div class="logo">
+        <img src="assets/logo-light.svg" alt="logo">
+      </div>
+      <div class="links">
+        <ul>
+          <li><a href="home.html" class="active">Home</a></li>
+          <li><a href="favorite.html">Favorite</a></li>
+          <li><a href="chat.html">Chat</a></li>
+        </ul>
+      </div>
+    </div>
+    <button class="nav-btn" id="edit">Edit Profile</button>
+    <button class="nav-btn" id="logout">Logout</button>
+
+  </nav>
+
+  <!-- start edit section  -->
+  <div id="edit_section" class="overlay  d-none  ">
+    <section class="signup-section">
+      <div class="box">
+
+        <div class="close-btn" id="close"><b>+</b></div>
+        <div>
+          <div class="group">
+            <div class="user-img">
+              <label for="picture">
+                <img src="assets/client.png" alt="picture" id="profile_pic">
+                <span>Click to upload a picture</span>
+              </label>
+              <input type="file" class="d-none" id="picture">
+            </div>
+            <div class="form">
+              <div class="form-group">
+                <label for="edit_name">Name</label>
+                <input type="text" id="edit_name" class="input" placeholder="Enter Your Email" required>
+              </div>
+              <div class="form-group">
+                <label for="edit_email">Email</label>
+                <input type="email" id="edit_email" class="input" placeholder="ex@ex.com" required>
+              </div>
+              <div class="form-group">
+                <label for="edit_age">Age</label>
+                <input type="number" id="edit_age" class="input" placeholder="Enter Your Age" required>
+              </div>
+              <div class="form-group">
+                <label for="edit_password">Password</label>
+                <input type="password" id="edit_password" class="input"
+                  placeholder="leave it empty if no need to change">
+              </div>
+              <div class="form-group group-data">
+                <div class="form-group">
+                  <label for="edit_location">location</label>
+                  <input type="text" id="edit_location" class="input" placeholder="location" required>
+                </div>
+                <div class="form-group">
+                  <label for="edit_bio">Bio</label>
+                  <input type="text" id="edit_bio" class="input" placeholder="Bio" required>
+                </div>
+              </div>
+              <div class="form-group ">
+                <p>Gender :</p>
+                <input type="radio" checked="checked" class="input-radio" name="gender" id="gender_male" value="male">
+                <label for="gender-male">Male</label>
+                <input type="radio" class="input-radio" name="gender" id="gender_female" value="female">
+                <label for="gender-female">Female</label>
+              </div>
+              <div class="form-group">
+                <p>Interested In :</p>
+                <input type="radio" class="input-radio" name="interested" id="interested_male" value="male">
+                <label for="interested-male">Male</label>
+                <input type="radio" class="input-radio" name="interested" id="interested_female" value="female"
+                  checked="checked">
+                <label for="interested-female">Female</label>
+              </div>
+
+              <div class="form-group">
+                <p>Invisible</p>
+                <input type="radio" class="input-radio" name="invisible" id="invisible_1" value="male">
+                <label for="invisible_1">True</label>
+                <input type="radio" class="input-radio" name="invisible" id="invisible_2" value="female"
+                  checked="checked">
+                <label for="invisible_2">False</label>
+              </div>
+
+            </div>
+          </div>
+
+          <button class="signup-btn" id="save">Edit!</button>
+          <p class="d-none  error   " id="error2">Some Thing Is Wrong :(😒</p>
+
+        </div>
+      </div>
+    </section>
+    <div class="logo">
+      <img src="assets/logo-light.svg" alt="log">
+    </div>
+
+  </div>
+  <!-- end edit section  -->
+
+  <!-- end nav bar  -->
+  <!-- main section surf pepole -->
+  <section class="home">
+
+    <div class="main" id="main"></div>
+
+
+  </section>
+  <!-- end main section -->
+
+  <!-- footer -->
+  <footer class="footer">
+    <p>Copyright © 2022 FSW Cycle#21</p>
+  </footer>
+
+
+
+  <script src="scripts/axios.min.js"></script>
+  <script src="scripts/index.js"></script>
+  <script src="scripts/home.js"></script>
+
+
+</body>
+
+</html>
