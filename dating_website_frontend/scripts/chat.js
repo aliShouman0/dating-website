@@ -4,17 +4,14 @@ const userInfo = JSON.parse(localStorage.getItem("user_info"));
 
 
 
-
-
-
+//check on calling function  there is more  explain
+//chat with new user 
 const letsChat = () => {
   if (localStorage.getItem("letsChat")) {
     getMessage(localStorage.getItem("letsChat"), null);
     localStorage.removeItem("letsChat");
   }
 }
-
-
 
 //if the user just sends a message page will reload this function is used to re enter us to the receiver page chat by getting his id from local storage
 const checkLiveMessage = () => {
@@ -149,7 +146,7 @@ const loadData = (data) => {
         receivers.splice(j, 1);
     }
   }
-  
+
   if (receivers.length != 0 || receivers.length != 0) {
     left_panel.innerHTML = "";
   }
@@ -180,8 +177,6 @@ const loadData = (data) => {
 
 }
 
-
-
 //get info of all user who text them 
 //geting there name then laod them on page
 const user_info = async () => {
@@ -207,4 +202,6 @@ user_info();
 //if the user just sends a message page will reload this function is used to re enter the receiver page by getting his id from local storage
 checkLiveMessage();
 
+//when redirecting from any page to chat page and adding user id in local storage will open like a new tab I chat with this user
+//this function will check if there is an id local storage under a specific name 
 letsChat();

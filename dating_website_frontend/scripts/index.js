@@ -119,6 +119,7 @@ dating_website.blockUser = async (btn) => {
 }
 
 // chat user
+//when click on chat button will redirect to chat page and open like a new tab to chat with this user
 dating_website.chat = async (btn) => {
   localStorage.setItem("letsChat", btn.getAttribute("value"));
   location.href = "chat.html"
