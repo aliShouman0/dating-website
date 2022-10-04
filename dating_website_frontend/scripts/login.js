@@ -136,7 +136,6 @@ const sendData = async () => {
   } else {
     error2.classList.remove("d-none");
   }
-  dating_website.Console("post", signup_info);
 }
 
 // load and check if data is valid

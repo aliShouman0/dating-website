@@ -17,7 +17,7 @@ const edit_btn = document.getElementById("edit_btn");
 const profile_pic = document.getElementById("profile_pic");
 const close = document.getElementById("close");
 const body = document.querySelector("body");
-const invisible = document.getElementById("invisible");
+const invisible = document.getElementById("invisible_1");
 
 const save = document.getElementById("save");
 
@@ -121,10 +121,11 @@ checkLogin = async () => {
   }
 }
 
+const data = new FormData();
 //send data after load from user to edit profile
 const sendData = async () => {
   const edit_url = `${dating_website.baseUrl}/edit`;
-  const edit_info = await dating_website.postAPI(edit_url, api_edit_data);
+  const edit_info = await dating_website.postAPI(edit_url, data);
   if (edit_info.status && edit_info.status == 200) {
     location.reload();
   } else {
@@ -143,15 +144,15 @@ const fillFrom = () => {
   interested_male.checked = userInfo.interested_in == "male" ? true : false;
   gender_female.checked = userInfo.gender == "female" ? true : false;
   interested_female.checked = userInfo.interested_in == "female" ? true : false;
+  invisible_1.checked = userInfo.interested_in == "1" ? "1" : "0";
   profile_pic.src = `${userInfo.picture?"../dating_website_backend/storage/app/"+userInfo.picture:"assets/client.png"}`
 
 }
 
-const data = new FormData();
+
 
 // load and check if data is valid for edit
 const loadData = () => {
-  error2.classList.add("d-none");
   if (checkinput()) {
     // edit method
     data.append("token", dating_website.token);
@@ -163,16 +164,30 @@ const loadData = () => {
     }
     data.append("location", edit_location.value);
     data.append("bio", edit_bio.value);
-    data.append("invisible", invisible.value);
+    data.append("invisible", invisible.checked ? "1" : "0");
     data.append("invisible", "0");
     data.append("interested_in", interested_male.checked ? interested_male.value : "female");
     data.append("gender", gender_male.checked ? gender_male.value : "female");
     sendData();
 
-    console.log("s")
 
   }
 }
+
+// load img when upload
+const loadImg = (e) => {
+  const reader = new FileReader();
+  if (picture.files.length != 0) {
+    reader.addEventListener("load", () => {
+      profile_pic.src = reader.result
+      data.append("picture", reader.result);
+
+    });
+    reader.readAsDataURL(profile_pic.files[0]);
+  }
+}
+
+profile_pic.addEventListener("change", loadImg)
 
 
 
