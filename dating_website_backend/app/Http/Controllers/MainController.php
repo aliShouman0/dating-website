@@ -99,7 +99,7 @@ class MainController extends Controller
     function get_favorites()
     {
         $id = Auth::id();
-        $res = Favorite::where("user_id", $id)
+        $res = Favorite::where("user_id", $id)->with("User")
             ->whereNotIn("favorite_id", BlockedUser::select('blocked_user_id')
                 ->where("user_id", $id)
                 ->get())
