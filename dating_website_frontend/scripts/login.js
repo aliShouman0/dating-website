@@ -190,22 +190,24 @@ picture.addEventListener("change", loadImg)
 
 // check if login by checking data in  localStorage
 checkLogin = async () => {
-  if (!localStorage.getItem("access_token")) {
+  if (localStorage.getItem("access_token")) {
     localStorage.removeItem("user_info");
-  }
-  const access_token = localStorage.getItem("access_token");
-  // get user info
-  const user_info_url = `${dating_website.baseUrl}/me`;
-  let api_userInfo = new FormData();
-  api_userInfo.append("token", access_token);
-  const user_info = await dating_website.postAPI(user_info_url, api_userInfo);
-  if (user_info.status && user_info.status == 200) {
-    localStorage.setItem("user_info", JSON.stringify(user_info.data));
-    window.location = "home.html";
-  } else {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("user_info");
+    const access_token = localStorage.getItem("access_token");
+    // get user info
+    const user_info_url = `${dating_website.baseUrl}/me`;
+    let api_userInfo = new FormData();
+    api_userInfo.append("token", access_token);
+    const user_info = await dating_website.postAPI(user_info_url, api_userInfo);
+    if (user_info.status && user_info.status == 200) {
+      localStorage.setItem("user_info", JSON.stringify(user_info.data));
+      window.location = "home.html";
+    } else {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("user_info");
 
+    }
+  } else {
+    localStorage.removeItem("user_info");
   }
 }
 checkLogin();

@@ -1,61 +1,7 @@
 //tags
 const main = document.getElementById("main");
 const userInfo = JSON.parse(localStorage.getItem("user_info"));
-const token = localStorage.getItem("access_token");
 
-
-// block user
-const blockUser = async (btn) => {
-  const url = dating_website.baseUrl + "/block"
-  const data = new FormData();
-  data.append("token", token);
-  data.append("blocked_user_id", btn.getAttribute("value"));
-  const res = await dating_website.postAPI(url, data);
-  location.reload();
-
-}
-
-// like user
-const likeUser = async (btn) => {
-  const url = dating_website.baseUrl + "/favor"
-  const data = new FormData();
-  data.append("token", token);
-  data.append("favorite_id", btn.getAttribute("data-value"));
-  const res = await dating_website.postAPI(url, data);
-  const p = document.createElement("span");
-  if (res.data.status == "exists") {
-    p.innerText = "Already in Fav"
-
-  }
-  if (res.data.status == "Success") {
-    p.innerText = "Added Done"
-
-  }
-  btn.parentElement.appendChild(p);
-  setTimeout(() => {
-    btn.parentElement.removeChild(btn.parentElement.lastChild)
-  }, 3000)
-
-}
-
-// add Event Listener when all user are prente don screen
-const loadEvents = () => {
-  // get block all btn and add addEventListener 
-  const block = document.querySelectorAll(".block");
-  block.forEach(element => {
-    element.addEventListener("click", () => {
-      blockUser(element);
-    })
-  });
-
-  // get like all btn and add addEventListener 
-  const like = document.querySelectorAll(".like");
-  like.forEach(element => {
-    element.addEventListener("click", () => {
-      likeUser(element);
-    })
-  });
-}
 
 // load interested user on screen as card
 const loadUser = (data) => {
@@ -80,12 +26,12 @@ const loadUser = (data) => {
 
   });
   // load events for like block and chat
-  loadEvents();
+  dating_website.loadEvents();
 }
 
 // get interested user
 const get_user = async () => {
-  const url = `${dating_website.baseUrl}/interested_in?token=${token}`;
+  const url = `${dating_website.baseUrl}/interested_in?token=${dating_website.token}`;
   const intersted_user = await dating_website.getAPI(url);
   if (intersted_user.status && intersted_user.status == 200 && intersted_user.data.status == "Success") {
     loadUser(intersted_user.data.data);
@@ -98,12 +44,13 @@ const get_user = async () => {
 checkLogin = async () => {
   if (!localStorage.getItem("access_token")) {
     localStorage.removeItem("user_info");
+    window.location = "login.html";
+
   }
-  const access_token = localStorage.getItem("access_token");
   // get user info
   const user_info_url = `${dating_website.baseUrl}/me`;
   let api_userInfo = new FormData();
-  api_userInfo.append("token", access_token);
+  api_userInfo.append("token", dating_website.token);
   const user_info = await dating_website.postAPI(user_info_url, api_userInfo);
   if (user_info.status && user_info.status == 200) {
     localStorage.setItem("user_info", JSON.stringify(user_info.data));
@@ -116,8 +63,9 @@ checkLogin = async () => {
 }
 
 
+// check if login by checking data in  localStorage
 // check if user are login in and chck if token are valid
-checkLogin();
+dating_website.checkLogin();
 
 
 dating_website.logout();
