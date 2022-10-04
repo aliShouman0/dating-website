@@ -17,6 +17,7 @@ const edit_btn = document.getElementById("edit_btn");
 const profile_pic = document.getElementById("profile_pic");
 const close = document.getElementById("close");
 const body = document.querySelector("body");
+const invisible = document.getElementById("invisible");
 
 const save = document.getElementById("save");
 
@@ -162,6 +163,7 @@ const loadData = () => {
     }
     data.append("location", edit_location.value);
     data.append("bio", edit_bio.value);
+    data.append("invisible", invisible.value);
     data.append("invisible", "0");
     data.append("interested_in", interested_male.checked ? interested_male.value : "female");
     data.append("gender", gender_male.checked ? gender_male.value : "female");

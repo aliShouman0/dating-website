@@ -17,7 +17,6 @@ class MainController extends Controller
 {
 
 
-
     // get all user that intersted in
     function interested_in()
     {

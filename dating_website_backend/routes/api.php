@@ -29,6 +29,9 @@ Route::group(["prefix" => "v0.1"], function () {
         Route::post("message", [MainController::class, "message"])->name("send-messages");
         //get all user info who send or receiver message from this user      
         Route::get("users_message", [MainController::class, "users_message"])->name("users-message");
+        //edit profile
+        Route::post("edit", [AuthController::class, "edit"])->name("edit");
+
     });
 
     // add/signup  user
