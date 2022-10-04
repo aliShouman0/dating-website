@@ -1,5 +1,5 @@
+//tags
 const main = document.getElementById("main");
-
 
 
 // load interested user on screen as card
