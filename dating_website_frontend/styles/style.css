@@ -25,7 +25,9 @@ color: white;
   display: flex;
 }
 
-
+.overflow{
+  overflow: hidden;
+}
 
 .active{
   background-color: #ABA5C0;
@@ -163,6 +165,7 @@ button:hover{
   height: 100%;
   width:100%;
   transition: all 0.5s ease-in-out;
+  z-index: 1000;
   
 }
 
@@ -301,13 +304,15 @@ button:hover{
   font-weight: bolder;
 }
 
-.logout-btn{ 
-  padding: 0.7rem;
+.nav-btn{ 
+  padding: 0.6rem;
   border-radius: 10px;
   border: none;
   outline: none;
   margin-right: 1.5rem;
   cursor: pointer;
+  font-size: 1.3vw;
+  width: 11%;
 }
 /* end nav bar */
 
