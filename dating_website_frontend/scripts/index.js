@@ -118,9 +118,16 @@ dating_website.blockUser = async (btn) => {
 
 }
 
+// chat user
+dating_website.chat = async (btn) => {
+  localStorage.setItem("letsChat", btn.getAttribute("value"));
+  location.href = "chat.html"
+}
+
+
 // add Event Listener when all user are present on screen for like block and chat
 dating_website.loadEvents = () => {
-  // get block all btn and add addEventListener 
+  // get all block   btn and add addEventListener 
   const block = document.querySelectorAll(".block");
   block.forEach(element => {
     element.addEventListener("click", () => {
@@ -128,11 +135,19 @@ dating_website.loadEvents = () => {
     })
   });
 
-  // get like all btn and add addEventListener 
+  // get all like   btn and add addEventListener 
   const like = document.querySelectorAll(".like");
   like.forEach(element => {
     element.addEventListener("click", () => {
       dating_website.likeUser(element);
+    })
+  });
+
+  // get all chat   btn and add addEventListener 
+  const chat = document.querySelectorAll(".chat");
+  chat.forEach(element => {
+    element.addEventListener("click", () => {
+      dating_website.chat(element);
     })
   });
 }

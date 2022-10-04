@@ -5,6 +5,17 @@ const userInfo = JSON.parse(localStorage.getItem("user_info"));
 
 
 
+
+
+const letsChat = () => {
+  if (localStorage.getItem("letsChat")) {
+    getMessage(localStorage.getItem("letsChat"), null);
+    localStorage.removeItem("letsChat");
+  }
+}
+
+
+
 //if the user just sends a message page will reload this function is used to re enter us to the receiver page chat by getting his id from local storage
 const checkLiveMessage = () => {
   if (localStorage.getItem("message_user")) {
@@ -130,10 +141,20 @@ const loadEvent = () => {
 const loadData = (data) => {
   //we have senders and receivers as we may send to  a user but never reply back or vice versa and we need the user name in the 2 condition  
   //but we may reply back so some users may be duplicated as senders and receivers so remove them by data.receivers.splice(**) if exists
-  data.senders.forEach((element, i) => {
-    if (element.user_sender.id == data.receivers[i].user_receiver.id) {
-      data.receivers.splice(i, 1);
+  let senders = data.senders
+  let receivers = data.receivers
+  for (let j = 0; j < receivers.length; j++) {
+    for (let k = 0; k < senders.length; k++) {
+      if (senders[k].user_sender.id == receivers[j].user_receiver.id)
+        receivers.splice(j, 1);
     }
+  }
+  
+  if (receivers.length != 0 || receivers.length != 0) {
+    left_panel.innerHTML = "";
+  }
+  senders.forEach((element) => {
+
     left_panel.innerHTML += ` 
     <div class="user user_senders " data-value="${element.user_sender.id}">
      <div class="img">
@@ -143,7 +164,7 @@ const loadData = (data) => {
     </div>`;
 
   });
-  data.receivers.forEach(element => {
+  receivers.forEach(element => {
     left_panel.innerHTML += ` 
     <div class="user user_receiver" data-value="${element.user_receiver.id}" >
      <div class="img">
@@ -155,7 +176,10 @@ const loadData = (data) => {
   // add event to each user to see chat when click on his name the chat history will loaded
   loadEvent()
 
+
+
 }
+
 
 
 //get info of all user who text them 
@@ -166,7 +190,7 @@ const user_info = async () => {
   if (res.data.status == "Success") {
     loadData(res.data.data);
   }
-  console.log(res.data)
+
 }
 
 
@@ -182,3 +206,5 @@ user_info();
 
 //if the user just sends a message page will reload this function is used to re enter the receiver page by getting his id from local storage
 checkLiveMessage();
+
+letsChat();

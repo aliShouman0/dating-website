@@ -478,6 +478,18 @@ button:hover{
   width: 10%;
 
 }
+.no_message{
+  width: 80%;
+  height: 80%;
+  text-align: center;
+  margin: auto;
+  background-color: #3D5467;
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+p.no_message{ 
+}
 
 /* end chat page */
 
